@@ -17,9 +17,11 @@
             fill-height
           "
         >
-          <v-btn flat color="secondary">Quest</v-btn>
+          <v-btn :to="{ name: 'quest' }" flat color="secondary">Quest</v-btn>
 
-          <v-btn flat color="secondary">Leaderboard</v-btn>
+          <v-btn :to="{ name: 'leaderboard' }" flat color="secondary"
+            >Leaderboard</v-btn
+          >
           <v-btn @click="logout" flat color="error">Logout</v-btn>
         </v-card-actions>
       </v-card>
