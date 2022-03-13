@@ -1,5 +1,4 @@
 import axios from 'axios';
-import authHeader from './auth-header';
 const API_URL = 'http://localhost:8000/api/auth/';
 class AuthService {
   login(user) {
@@ -24,11 +23,6 @@ class AuthService {
       username: user.username,
       email: user.email,
       password: user.password
-    });
-  }
-  getUser(id) {
-    return axios.post(API_URL + 'getUser', { id: id }, { headers: authHeader() }).then(response => {
-      return response.data;
     });
   }
 }

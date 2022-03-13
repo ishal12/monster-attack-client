@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import authService from "@/services/auth.service";
+import userService from "@/services/user.service";
 export default {
   data: () => ({
     username: "",
@@ -22,7 +22,7 @@ export default {
   mounted() {
     let user = JSON.parse(localStorage.getItem("user"));
     if (user && user.token) {
-      authService.getUser(user._id).then((user) => {
+      userService.getUser(user._id).then((user) => {
         this.username = user.data.username;
         this.score = user.data.score;
       });
