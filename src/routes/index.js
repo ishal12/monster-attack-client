@@ -8,6 +8,8 @@ import Dashboard from '@/views/Dashboard';
 import MainMenu from '@/views/MainMenu';
 import Login from '@/views/Login';
 import Register from '@/views/Register';
+import Leaderboard from '@/views/Leaderboard';
+import Quest from '@/views/Quest';
 
 const routes = [
     {
@@ -41,7 +43,17 @@ const routes = [
                 path: '/dashboard',
                 name: 'dashboard',
                 components: { default: Dashboard },
-            }
+            },
+            {
+                path: '/leaderboard',
+                name: 'leaderboard',
+                components: { default: Leaderboard },
+            },
+            {
+                path: '/quest',
+                name: 'quest',
+                components: { default: Quest },
+            },
         ]
     },
 ];
