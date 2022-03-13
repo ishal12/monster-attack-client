@@ -1,12 +1,15 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-const API_URL = 'http://localhost:8080/api/quest/';
+const API_URL = 'http://localhost:8000/api/quest/';
 class QuestService {
   getAllQuest() {
-    return axios.get(API_URL + 'listAllQuest', { headers: authHeader() });
+    return axios.get(API_URL + 'listAllQuest', { headers: authHeader() })
+      .then(response => {
+        return response.data;
+      });
   }
-  doQuest(id) {
-    return axios.post(API_URL + 'doQuest/:id', id, { headers: authHeader() });
+  doQuest(quest_id, user_id) {
+    return axios.post(API_URL + `doQuest/${quest_id}`, { id: user_id }, { headers: authHeader() });
   }
 }
 export default new QuestService();
