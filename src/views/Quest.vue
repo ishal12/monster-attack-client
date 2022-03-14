@@ -13,13 +13,13 @@
             <tr></tr>
           </thead>
           <tbody>
-            <tr v-for="item in quests" :key="item._id">
+            <tr v-for="(item, index) in quests" :key="index">
               <td>{{ item.name }}</td>
               <td>
                 <v-btn
-                  @click="attack(item._id)"
+                  @click="attack(item._id, index)"
                   flat
-                  :disabled="isDisabled"
+                  :disabled="isDisabled[index]"
                   color="secondary"
                   >Attack</v-btn
                 >
@@ -63,17 +63,26 @@
 import questService from "@/services/quest.service";
 
 export default {
+  props: {
+    method: { type: Function },
+  },
   data() {
     return {
       quests: [{}],
       loading: false,
       dialog: false,
       message: "",
+      isDisabled: [],
     };
   },
-  computed: {},
   methods: {
-    attack(id) {
+    attack(id, index) {
+      // disabled button after cliked
+      this.isDisabled[index] = true;
+      setTimeout(() => {
+        this.isDisabled[index] = false;
+      }, 30000);
+
       this.loading = true;
       let user = JSON.parse(localStorage.getItem("user"));
       if (user && user.token) {
@@ -81,6 +90,8 @@ export default {
           this.loading = false;
           this.message = response.data.message;
           this.dialog = true;
+          // reload navbar component
+          this.method();
         });
       }
     },
