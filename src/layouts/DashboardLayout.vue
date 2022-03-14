@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-layout>
-      <DashboardNavbar />
+      <DashboardNavbar :key="score_reload" />
 
       <!-- Sizes your content based upon application components -->
       <v-main>
@@ -9,7 +9,7 @@
         <v-container fluid>
           <!-- If using vue-router -->
 
-          <router-view></router-view>
+          <router-view :method="reload"></router-view>
         </v-container>
       </v-main>
     </v-layout>
@@ -25,7 +25,13 @@ export default {
   },
 
   data: () => ({
-    //
+    score_reload: 0,
   }),
+  methods: {
+    // when reload() called, component dashboad reloaded
+    reload() {
+      this.score_reload++;
+    },
+  },
 };
 </script>
