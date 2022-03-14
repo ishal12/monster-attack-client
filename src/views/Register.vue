@@ -102,7 +102,11 @@ export default {
             password: this.password,
           };
 
-          return authService.register(user);
+          return authService.register(user).then(() => {
+            authService.login(user).then(() => {
+              this.$router.push({ name: "dashboard" });
+            });
+          });
         } else alert("Password must be match");
       });
     },
