@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-const API_URL = 'http://localhost:8000/api/quest/';
+const API_URL = 'http://188.166.189.111/api/quest/';
 class QuestService {
   getAllQuest() {
     return axios.get(API_URL + 'listAllQuest', { headers: authHeader() })
